@@ -24,7 +24,10 @@ const cropWidth = rating => {
 };
 
 const StarRating = ({ rating, rateMovie }) => {
-  const containerStyle = { width: `${cropWidth(rating)}px` };
+  let containerStyle = { width: '0px' };
+  if (rating) {
+    containerStyle = { width: `${cropWidth(rating)}px` };
+  }
 
   return (
     <div>

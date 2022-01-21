@@ -28,8 +28,12 @@ const MovieCard = ({ movie, setMovies }) => {
   };
 
   const starsRating = useMemo(() => {
-    const sum = movie.rating.reduce((acc, item) => acc + item);
-    return Number(sum / movie.rating.length).toFixed(1);
+    if (movie.rating.length) {
+      const sum = movie.rating.reduce((acc, item) => acc + item);
+      return Number(sum / movie.rating.length).toFixed(1);
+    } else {
+      return 0;
+    }
   }, [movie.rating.length]);
 
   return (
@@ -45,22 +49,28 @@ const MovieCard = ({ movie, setMovies }) => {
         </div>
         {movie.added && (
           <div className="card-actions">
-            <button onClick={() => onDeleteMovie(movie.id)}>Delete Movie</button>
+            <button className="btn btn-sm btn-danger" onClick={() => onDeleteMovie(movie.id)}>
+              Delete Movie
+            </button>
           </div>
         )}
         <div className="card-footer">
-          <div className="clearfix">
-            <div className="float-left mt-1">
+          <div className="d-flex justify-content-between">
+            <div className="mt-1">
               <StarRating rating={starsRating} rateMovie={rateMovie} />
             </div>
-            <div
-              className="card-footer-badge float-right badge badge-primary badge-pill"
-              onMouseEnter={() => setRatingStyle({ display: 'block' })}
-              onMouseLeave={() => setRatingStyle({ display: 'none' })}
-            >
-              {starsRating}
+            <div className="d-flex align-items-center">
+              <span
+                className="card-footer-badge badge badge-primary badge-pill"
+                onMouseEnter={() => setRatingStyle({ display: 'block' })}
+                onMouseLeave={() => setRatingStyle({ display: 'none' })}
+              >
+                {starsRating}
+              </span>
+              <span className="badge badge-secondary badge-pill" style={ratingStyle}>
+                {movie.rating.length}
+              </span>
             </div>
-            <span style={ratingStyle}>{movie.rating.length}</span>
           </div>
         </div>
       </div>

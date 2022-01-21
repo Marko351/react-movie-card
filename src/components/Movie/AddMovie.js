@@ -52,7 +52,7 @@ const AddMoview = ({ setMovies }) => {
         title: '',
         subtitle: '',
         description: '',
-        rating: 0,
+        rating: [],
         added: true,
       });
       setOpenForm(false);
@@ -61,36 +61,38 @@ const AddMoview = ({ setMovies }) => {
 
   return (
     <div className="new-movie">
-      <button className="new-movie--btn" onClick={toggleForm}>
+      <button className="btn btn-sm btn-primary" onClick={toggleForm}>
         Add New Movie
       </button>
-      {openForm ? (
+      {openForm && (
         <Fragment>
           <div className="new-movie--container">
             <span>
               <label htmlFor="imageUrl">Image URL</label>
               <input name="imageUrl" value={data.imageUrl} onChange={onChangeMovieData} />
-              {errors.forimageUrl ? <small>{errors.forimageUrl}</small> : null}
+              {errors.forimageUrl && <small>{errors.forimageUrl}</small>}
             </span>
             <span>
               <label htmlFor="title">Title</label>
               <input name="title" value={data.title} onChange={onChangeMovieData} />
-              {errors.fortitle ? <small>{errors.fortitle}</small> : null}
+              {errors.fortitle && <small>{errors.fortitle}</small>}
             </span>
             <span>
               <label htmlFor="subtitle">Subtitle</label>
               <input name="subtitle" value={data.subtitle} onChange={onChangeMovieData} />
-              {errors.forsubtitle ? <small>{errors.forsubtitle}</small> : null}
+              {errors.forsubtitle && <small>{errors.forsubtitle}</small>}
             </span>
             <span>
               <label htmlFor="description">Description</label>
               <input name="description" value={data.description} onChange={onChangeMovieData} />
-              {errors.fordescription ? <small>{errors.fordescription}</small> : null}
+              {errors.fordescription && <small>{errors.fordescription}</small>}
             </span>
           </div>
-          <button onClick={onSaveMovie}>Save</button>
+          <button className="btn btn-sm btn-success" onClick={onSaveMovie}>
+            Save
+          </button>
         </Fragment>
-      ) : null}
+      )}
     </div>
   );
 };
