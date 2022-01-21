@@ -3,15 +3,13 @@ import PropTypes from 'prop-types';
 
 import MovieCard from './MovieCard';
 
-const getMovies = movies => (
+const MovieList = ({ movies, setMovies }) => (
   <div className="card-deck">
     {movies.map(movie => (
-      <MovieCard key={movie.id} movie={movie} />
+      <MovieCard key={movie.id} movie={movie} setMovies={setMovies} />
     ))}
   </div>
 );
-
-const MovieList = ({ movies }) => <div>{getMovies(movies)}</div>;
 
 MovieList.defaultProps = {
   movies: [],

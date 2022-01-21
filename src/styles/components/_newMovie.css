@@ -1,0 +1,17 @@
+.new-movie {
+  padding: 10px;
+}
+
+.new-movie--container {
+  display: flex;
+  justify-content: space-between;
+  margin: 15px 0;
+}
+
+.new-movie--container :is(label, small) {
+  display: block;
+}
+
+small {
+  color: crimson;
+}
